@@ -1,61 +1,48 @@
 # 🎰 Niquel
 
-Um pequeno projeto de estudo feito em Python simulando uma máquina de caça-níquel pelo terminal.
+A small Python project that simulates a slot machine through the terminal.
 
-O objetivo principal deste projeto não é ser um cassino completo ou um sistema profissional. Ele foi criado para praticar conceitos básicos de programação, principalmente:
+This project was created mainly as a **programming study project**. The goal is not to create a professional casino system, but to practice basic programming concepts by building something from scratch.
 
-* `while`
-* `for`
-* `if / elif / else`
-* listas
-* variáveis
-* `random`
-* `time.sleep()`
-* entrada de dados com `input()`
-* conversão de valores com `int()`
-* comparação de strings
-* controle de saldo
-* probabilidade básica
+## 💡 Project Idea
 
-## 💡 Ideia do projeto
+The player starts by choosing how much fictional money they want in their bank.
 
-O jogador começa escolhendo quanto dinheiro fictício terá no banco.
+This value represents the total amount of money available for that game.
 
-Esse valor representa o dinheiro total disponível para aquela "vida".
-
-Por exemplo:
+For example:
 
 ```text
-Banco: 500
+Bank: 500
 ```
 
-O jogador pode então transferir uma parte desse valor para a casa:
+The player can then transfer part of the money from the bank to the house:
 
 ```text
-Banco: 400
-Casa: 100
+Bank: 400
+House: 100
 ```
 
-Dentro da casa, ele escolhe quanto deseja apostar em cada giro.
+Inside the house, the player chooses how much they want to bet.
 
-Por exemplo:
+For example:
 
 ```text
-Valor na casa: 100
-Aposta: 20
+House: 100
+Bet: 20
 ```
 
-Depois escolhe quantos giros quer fazer.
+After that, the player chooses how many spins they want to make.
 
 ```text
-Quantidade de giros: 5
+Number of spins: 5
 ```
 
-A máquina então executa os giros individualmente, mostrando uma pequena animação antes de apresentar o resultado.
+The machine performs the spins one by one, showing a small animation before displaying the final result.
 
-## 🍓 Resultados
+## 🍓 Results
 
-A máquina possui cinco símbolos:
+The slot machine has five symbols:
 
 ```text
 🍓 Strawberry
@@ -65,75 +52,75 @@ A máquina possui cinco símbolos:
 🔄 Retry
 ```
 
-Cada resultado possui uma consequência diferente:
+Each special result has a different effect:
 
-| Resultado |                 Multiplicador |
-| --------- | ----------------------------: |
-| 🍓🍓🍓    |                            x2 |
-| 🍇🍇🍇    |                            x5 |
-| 🥭🥭🥭    |                           x10 |
-| 💣💣💣    |                perde a aposta |
-| 🔄🔄🔄    | tenta novamente gratuitamente |
+| Result |   Multiplier |
+| ------ | -----------: |
+| 🍓🍓🍓 |           x2 |
+| 🍇🍇🍇 |           x5 |
+| 🥭🥭🥭 |          x10 |
+| 💣💣💣 | Lose the bet |
+| 🔄🔄🔄 |   Free retry |
 
-Qualquer combinação diferente das combinações especiais também representa uma derrota.
+Any other combination is considered a loss.
 
-## 🎲 Como funcionam as chances
+## 🎲 How the Chances Work
 
-A máquina utiliza `random.choice()` para escolher aleatoriamente cada símbolo.
+The machine uses `random.choice()` to randomly select each symbol.
 
-No modo normal:
+In normal mode:
 
 ```python
 niquel = ["🍓", "🍇", "🥭", "💣", "🔄"]
 ```
 
-Existem cinco símbolos possíveis.
+There are five possible symbols.
 
-Como cada símbolo aparece uma vez na lista, cada um possui aproximadamente:
+Since every symbol appears once in the list, each symbol has approximately:
 
 ```text
 20%
 ```
 
-de chance de ser escolhido em **cada rolo**.
+chance of being selected on each roll.
 
-Como existem três rolos independentes, conseguir três símbolos iguais é muito menos provável do que simplesmente conseguir um símbolo.
+Because the machine has three independent rolls, getting three identical symbols is much less likely than getting a single symbol.
 
-Por exemplo, a chance matemática de obter:
+For example, the probability of getting:
 
 ```text
 🍓🍓🍓
 ```
 
-é:
+is:
 
 ```text
 1/5 × 1/5 × 1/5 = 1/125
 ```
 
-ou aproximadamente:
+which is approximately:
 
 ```text
-0,8%
+0.8%
 ```
 
-O mesmo princípio vale para os outros resultados especiais no modo normal.
+The same principle applies to the other special combinations in normal mode.
 
-## 🔐 Modo VIP
+## 🔐 VIP Mode
 
-Existe também um pequeno sistema secreto.
+There is also a small secret mode.
 
-Ao iniciar o programa, se o jogador digitar:
+When starting the program, if the player enters:
 
 ```text
 VIP
 ```
 
-em vez de colocar imediatamente o valor do banco, o programa ativa o modo VIP.
+instead of entering the initial bank value, VIP mode is activated.
 
-Depois disso, o jogador escolhe normalmente o valor inicial do banco.
+The player then chooses the initial bank normally.
 
-No modo VIP, a lista utilizada pelo `random.choice()` possui alguns símbolos repetidos:
+In VIP mode, the program uses a different list:
 
 ```python
 vip_niquel = [
@@ -145,21 +132,23 @@ vip_niquel = [
 ]
 ```
 
-Isso altera as probabilidades.
+Some symbols appear more than once.
 
-A ideia é demonstrar que a própria estrutura de uma lista pode ser utilizada para modificar a probabilidade de um resultado.
+Because `random.choice()` chooses from the entire list, repeating a symbol increases its probability of being selected.
 
-## 🎰 Sistema de giros
+The purpose of this system is to practice the idea that the structure of a list can affect probability.
 
-O jogador pode escolher quantos giros deseja realizar.
+## 🎰 Spin System
 
-Por exemplo:
+The player can choose how many spins they want.
+
+For example:
 
 ```text
 How many spins do you want? 5
 ```
 
-O programa executará:
+The program will perform:
 
 ```text
 SPIN 1
@@ -169,81 +158,81 @@ SPIN 4
 SPIN 5
 ```
 
-Cada giro possui uma pequena animação utilizando `time.sleep()` para dar a impressão de que os símbolos estão realmente girando.
+Each spin contains a small animation using `time.sleep()` to make the machine feel like it is actually spinning.
 
-## 🏦 Banco e Casa
+## 🏦 Bank and House
 
-O projeto separa o dinheiro em dois lugares:
+The project separates the player's money into two places.
 
-### Banco
+### Bank
 
-Representa o dinheiro que o jogador possui e ainda não colocou na casa.
+The bank represents the money the player currently owns but has not placed into the house.
 
-### Casa
+### House
 
-Representa o dinheiro que foi colocado no jogo.
+The house represents the money that the player has transferred into the game.
 
-Isso permite que o jogador tenha controle sobre quanto deseja colocar na máquina.
+This allows the player to control how much money they want to put into the machine.
 
-Depois dos giros, o dinheiro da casa pode ser transferido novamente para o banco.
+After the spins, the player can transfer the money from the house back to the bank.
 
-Exemplo:
+For example:
 
 ```text
-Banco: 400
-Casa: 140
+Bank: 400
+House: 140
 ```
 
-Depois da transferência:
+After transferring:
 
 ```text
-Banco: 540
-Casa: 0
+Bank: 540
+House: 0
 ```
 
 ## 💀 Game Over
 
-Se o banco chegar a:
+If the bank reaches:
 
 ```text
 0
 ```
 
-o jogador quebra e a sessão termina.
+the player has no money left and the game ends.
 
-Isso cria uma espécie de sistema de "vida", em que o valor inicial escolhido determina quanto dinheiro fictício o jogador possui para aquela partida.
+The initial bank value therefore works like a kind of "life" for the player.
 
-## 📚 Objetivo de aprendizado
+A smaller starting value makes the game harder, while a larger value gives the player more room to continue playing.
 
-Este projeto começou como um exercício pessoal de programação.
+## 📚 Learning Purpose
 
-A primeira versão foi construída manualmente, utilizando conceitos que estavam sendo estudados naquele momento.
+This project was created as a personal programming exercise.
 
-Depois, algumas partes foram desenvolvidas com auxílio do ChatGPT para finalizar sistemas que ainda não estavam implementados.
+The first version was written manually using the concepts I was studying at the time.
 
-A intenção não é esconder essa parte.
+After building the initial version, I used ChatGPT to help finish some parts of the project and learned new things from the changes.
 
-O projeto representa justamente um processo de aprendizado: construir uma base, encontrar problemas, tentar entender como resolver e utilizar ferramentas para aprender e terminar aquilo que ainda não estava ao alcance.
+The goal was not simply to copy a finished program, but to understand the logic and use the project as a way to learn.
 
-O código continua propositalmente simples para que seja possível acompanhar a lógica sem transformar o projeto em uma aplicação profissional.
+The code is intentionally kept relatively simple because this is a learning project. I want to be able to read the code, understand what each part does, and continue improving it myself.
 
-## 🚧 Possíveis melhorias futuras
+## 🚧 Possible Future Improvements
 
-Algumas ideias que poderiam ser implementadas futuramente:
+Some things that could be added in the future:
 
-* calcular as probabilidades automaticamente;
-* adicionar mais símbolos;
-* criar diferentes níveis de dificuldade;
-* adicionar histórico dos giros;
-* criar estatísticas da sessão;
-* melhorar a animação;
-* adicionar sons;
-* salvar o progresso em um arquivo;
-* criar um sistema de ranking;
-* criar uma interface gráfica.
+* Automatically calculate and display the probabilities
+* Add more symbols
+* Add different difficulty levels
+* Add spin history
+* Add session statistics
+* Improve the spinning animation
+* Add sounds
+* Save progress to a file
+* Add a ranking system
+* Create a graphical interface
 
-Por enquanto, o objetivo principal é aprender Python através do próprio projeto.
+For now, the main goal is simply to keep learning Python by building things.
 
 ---
 
-**Projeto de estudo — Python 🎰🐍**
+**Study project — Python 🎰🐍**
